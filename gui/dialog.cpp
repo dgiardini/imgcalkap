@@ -12,13 +12,14 @@ CoordinatesDlg::CoordinatesDlg(const wxString& title, const wxPoint& pos, const 
 		: wxDialog((wxDialog *)NULL, -1, title, pos, size)
 {
 	//wxString minihelp=wxT("Enter integer degrees and decimal minutes\nUse (-) sign for S/W in the degree field\n");
-	wxString minihelp=wxT("Enter latitud and longitude\n"
+	const char * msg="Enter latitud and longitude\n"
 				"Examples:\n"
 				"32S 34.98 52W 30.00\n"
 				"32S 35 30 52W 30 15\n"
 				"32°35'30\"S 52°30'15\"W\n"
-				"32°35'30\"S-52°30'15\"W\n"
-				);
+				"-33 35 30 -52 30 15\n";
+	wxString minihelp= wxString::FromAscii(msg);
+	
 
 	wxStaticBox *statBox = new wxStaticBox(this, CDlg_StaticBox,wxT(" Lat/Long "), wxPoint(5,0), wxSize(CAL_DLG_WIDTH-15,CAL_DLG_HEIGHT-10));
 	wxStaticText *MiniHelp = new wxStaticText(this, CDlg_MiniHelp,minihelp, wxPoint(L_MARGIN,15));

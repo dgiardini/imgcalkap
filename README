@@ -1,0 +1,120 @@
+ImgCalKap - Simple map calibration tool
+For Linux And MS Windows
+What it does ?
+
+- Let you choose a kap file, edit the calibration marks and boundaries ....
+- ... or open an image file of a raster map (bmp, png, etc), insert some calibration marks (at least two)...
+- ... define the boundaries for the chart ....
+- ... and save the image as a kap file to use with OpenCPN or other compatible software.
+
+Once a raster image is saved as a kap file, can be edited as often as desired.
+Installation:
+
+Windows:
+   Unzip anywhere in your computer.
+
+Linux:
+You must compile and install by yourself the program. See bottom.
+How to use ?
+***** BIG WARNING *****
+
+    For kap files, is _very_ important you keep a copy of the original file. This is because is
+   converted to PNG and then to kap again. A new file header is generated so you can loose info.
+    For pictures, the program will not modify the original file images(bmp,png,etc,other than kap).
+***********************
+Windows: Start the program with the usual clicking
+
+Linux: Open a terminal,and (assuming you copied the binary to /usr/local/bin or /usr/bin) type: #imgcalkap
+Click on the initial window and open the image file you want to edit or convert to kap. Then, use
+the following keys to do the following actions:
+
+   Keys:
+   [+][-] - [PgUp,PgDown]	   Zoom in /out
+   [Insert] or [i]	   Insert a new calibration point at mouse position
+   [Delete] or [d]	   Delete calibration point under mouse position
+   [b]	   Insert a boundary point at mouse position
+   [v]	   Delete a boundary point under mouse position
+   [home] or [c]	   Move image to cursor
+   [0]	   Restore zoom
+   [Ctrl +s]	   Open save dialog
+   [Esc]	   Exit program
+
+   You can zoom in and then drag the map with the mouse
+   Right click on calibration mark to enter coordinates. Use a minus (-) sign for S/W locations, only with the degrees field.
+   Right click elsewhere to edit map information
+   To drag a boundary point, you must keep pressed the CTRL key and then drag the blue circles using the left button of the mouse
+   Press the "s" key to pop up the save dialog.
+   Press "Esc" to leave.
+
+The blue circles are the vertices of a polygon (a rectangle in the most basic form), and everything
+outside that polygon will be ignored by OpenCPN. For example, you could calibrate
+a print screen without edit borders or other undesirables parts of the image. Just define a proper
+boundary and the non interesting zones will be hidden.
+Command Line
+
+    You can invoke "imgcalkap imagefile" to open "imagefile" and start calibrating.   
+Compiling
+    First, be sure you have the followings libs already installed in your system:
+wxWidgets
+OpenCV  On Linux must be compiled WHIT GTK BACKEND ( WITHOUT QT support).
+FreeImage
+
+Linux:
+
+Unpack the tgz file in a directory of your choice, for example :
+#cp imgcalkap-0.2.tgz /tmp
+#cd /tmp
+#gunzip -cv imgcalkap-0.2.tgz | tar -xv
+#cd imgcalkap-0.2
+
+Then type "make".
+
+Hopefully, you will get an executable file named imgcalkap. Try: #./imgcalkap
+If you are satisfied with the result, you can copy the program somewhere into the path, for example
+#cp imgcalkap /usr/local/bin
+
+Windows:
+
+   You will need to compile OpenCv, wxWidgets and FreeImage under MinGw, in order to use the same Makefile
+    You also can create a Visual Studio project, see the defines in the Makefile to exclude Linux libs
+   If you use MinGw, look a the Makefile and point the OPENCV_DIR variable to your OpenCV path. Then type "make".
+   You must also copy FreeImage.dll, libopencv dlls,libgcc dll and libstdc dll to the executable dir path.
+   
+TODO
+    - Improve the interface
+    - Add imgkap options to the dialogs
+    - Add option to export map as image bitmap
+   
+Known Issues
+    - OpenCV doesn't have a method to handle the "close" button. On Windows we avoid the problem disabling
+     the "cross" button from the menu. On Linux,this button closes the window but the program will still running
+     in background with erratic behaviour.
+    - OpenCV low perfomance under Linux ( compilation flags ?)
+BUGS
+    Plenty, please report them to the email below.
+THANKS
+
+    -MdJ, author of the imgkap tool
+    -OpenCPN Team   
+CREDITS
+
+    imgkap - image to BSB Charts - by MdJ
+    http://www.dacust.com/inlandwaters/imgkap/
+    Images:
+    "OrteliusWorldMap1570" by Abraham Ortelius - The Library of Congress.
+    Licensed under Public domain via Wikimedia Commons
+    -http://commons.wikimedia.org/wiki/File:OrteliusWorldMap1570.jpg#mediaviewer/File:OrteliusWorldMap1570.jpg
+    "Measuring-tape" by Evan-Amos - Own work.
+     Licensed under Public domain via Wikimedia Commons
+    -http://commons.wikimedia.org/wiki/File:Measuring-tape.jpg#mediaviewer/File:Measuring-tape.jpg
+
+DISCLAIMER
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details: http://www.gnu.org/copyleft/gpl.html
+
+Copyright (C) 2014  -  David Giardini - dgiardini @ gmail.com
+
+ 
